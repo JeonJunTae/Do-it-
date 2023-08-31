@@ -1,5 +1,7 @@
 import 'package:do_it/widgets/w_facebooksignin_button.dart';
 import 'package:do_it/widgets/w_googlesignin_button.dart';
+import 'package:do_it/widgets/w_kakaosignin_button.dart';
+import 'package:do_it/widgets/w_phonesignin_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,12 +18,16 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 600,
+            height: 550,
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Column(
               children: [
+                PhoneSignInButton(),
+                SizedBox(height: 15),
+                KakaoSignInButton(),
+                SizedBox(height: 15),
                 FacebookSignInButton(),
                 SizedBox(height: 15),
                 GoogleSignInButton(),

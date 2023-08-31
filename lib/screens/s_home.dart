@@ -1,33 +1,21 @@
-import 'package:do_it/resources/auth_methods.dart';
-import 'package:do_it/widgets/w_custom_button.dart';
+import 'package:do_it/screens/s_friends_home.dart';
+import 'package:do_it/widgets/w_mainappbar.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreen();
+  State<Home> createState() => _Home();
 }
 
-class _HomeScreen extends State<HomeScreen> {
-  final FirebaseAuthMethods _authMethods = FirebaseAuthMethods();
-
+class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomButton(
-              onTap: () async {
-        await _authMethods.signOut(context);
-        Navigator.pushNamed(context, '/login');
-      },
-              text: "로그아웃",
-            ),
-          ],
-        ),
+    return const SafeArea(
+      child: Scaffold(
+        appBar: MainAppBar(),
+        body: FriendsHome(),
       ),
     );
   }

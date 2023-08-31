@@ -16,7 +16,6 @@ class _GoogleSignInButton extends State<GoogleSignInButton> {
     return TextButton.icon(
       onPressed: () async {
         await _authMethods.signInWithGoogle(context);
-        Navigator.pushNamed(context, '/home');
       },
       icon: const Image(
         image: AssetImage("assets/images/google-logo.png"),
@@ -26,22 +25,18 @@ class _GoogleSignInButton extends State<GoogleSignInButton> {
       label: const Text(
         "구글 계정으로 시작",
         style: TextStyle(
-          color: Colors.black,
+          color: Color.fromARGB(255, 70, 164, 241),
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 18,
         ),
       ),
       style: TextButton.styleFrom(
         minimumSize: Size((MediaQuery.of(context).size.width / 1.1),
             MediaQuery.of(context).size.height / 16),
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffCEDDED),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: BorderSide(
-            color: Colors.grey.withOpacity(0.5),
-            width: 2,
-          ),
         ),
       ),
     );

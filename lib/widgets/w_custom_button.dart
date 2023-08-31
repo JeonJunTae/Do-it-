@@ -13,10 +13,15 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: Colors.red,
         minimumSize: const Size(double.infinity, 40),
       ),
       onPressed: onTap,
-      child: Text(text),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
     );
   }
 }

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "firebase-auth": "^0.1.2"
+  }
+}

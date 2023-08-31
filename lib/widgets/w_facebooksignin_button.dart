@@ -16,7 +16,6 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
     return TextButton.icon(
       onPressed: () async {
         await _authMethods.signInWithFacebook(context);
-        Navigator.pushNamed(context, '/home');
       },
       icon: const Image(
         image: AssetImage("assets/images/facebook-logo.png"),
@@ -28,20 +27,16 @@ class _FacebookSignInButtonState extends State<FacebookSignInButton> {
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: 20,
+          fontSize: 18,
         ),
       ),
       style: TextButton.styleFrom(
         minimumSize: Size((MediaQuery.of(context).size.width / 1.1),
             MediaQuery.of(context).size.height / 16),
-        backgroundColor: const Color(0xff3b5998),
+        backgroundColor: const Color(0xff1977F2),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: BorderSide(
-            color: Colors.grey.withOpacity(0.5),
-            width: 2,
-          ),
         ),
       ),
     );
