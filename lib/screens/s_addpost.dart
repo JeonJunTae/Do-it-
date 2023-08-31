@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:do_it/screens/s_home.dart';
 import 'package:do_it/screens/s_modifypost.dart';
 import 'package:do_it/src/binding/controller/upload_controller.dart';
 import 'package:do_it/widgets/w_circleiconbutton.dart';

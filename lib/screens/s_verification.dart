@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:do_it/screens/s_layout.dart';
+import 'package:do_it/screens/s_base.dart';
 import 'package:do_it/screens/s_profileregister.dart';
 import 'package:do_it/screens/s_signinphone.dart';
 import 'package:do_it/widgets/w_custom_button.dart';
@@ -115,7 +115,7 @@ class _VerifyScreen extends State<VerifyScreen> {
                                 ),
                               );
                             } else {
-                              Get.offAll(const MobileScreenLayout());
+                              Get.offAll(const MainHome());
                             }
                           }
                         } else {

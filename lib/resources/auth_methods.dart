@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:do_it/screens/s_layout.dart';
 import 'package:do_it/screens/s_base.dart';
 import 'package:do_it/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -77,9 +76,9 @@ class FirebaseAuthMethods {
                 'profilePhoto': facebookuser.photoURL,
               },
             );
-            Get.offAll(const MobileScreenLayout());
+            Get.offAll(const MainHome());
           } else {
-            Get.offAll(const MobileScreenLayout());
+            Get.offAll(const MainHome());
           }
         }
         res = true;

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:do_it/screens/s_layout.dart';
+import 'package:do_it/screens/s_base.dart';
 import 'package:do_it/widgets/w_circleiconbutton.dart';
 import 'package:do_it/widgets/w_custom_button.dart';
 import 'package:do_it/widgets/w_text_field.dart';
@@ -109,7 +109,7 @@ class _ProfileRegisterScreenState extends State<ProfileRegisterScreen> {
                             user.toJson(), // Map 반환
                           )
                           .then(
-                            (_) => Get.offAll(const MobileScreenLayout()),
+                            (_) => Get.offAll(const MainHome()),
                           );
                     },
                     text: "완료"),
