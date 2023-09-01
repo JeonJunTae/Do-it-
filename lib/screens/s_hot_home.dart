@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class HotHome extends StatefulWidget {
-  const HotHome({super.key});
+  final ScrollController scrollController;
+  const HotHome({
+    super.key,
+    required this.scrollController,
+  });
 
   @override
   State<HotHome> createState() => _HotHomeState();
@@ -17,6 +21,7 @@ class _HotHomeState extends State<HotHome> {
           children: [
             Expanded(
               child: GridView.count(
+                controller: widget.scrollController,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
                 crossAxisCount: 2,

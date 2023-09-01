@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
 
 class _Home extends State<Home> {
   final ScrollController _friendsscrollController = ScrollController();
+  final ScrollController _hotscrollController = ScrollController();
   final scrollPosCtrl = Get.put(ScrollPositionController());
 
   @override
@@ -24,8 +25,12 @@ class _Home extends State<Home> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_friendsscrollController.hasClients) {
-        double lastPos = scrollPosCtrl.lastFriendsPosition.value;
-        _friendsscrollController.jumpTo(lastPos);
+        double friendlastPos = scrollPosCtrl.lastFriendsPosition.value;
+        _friendsscrollController.jumpTo(friendlastPos);
+      }
+      if (_hotscrollController.hasClients) {
+        double hotlastPos = scrollPosCtrl.lastHotPosition.value;
+        _hotscrollController.jumpTo(hotlastPos);
       }
     });
 
@@ -33,11 +38,16 @@ class _Home extends State<Home> {
       scrollPosCtrl
           .saveFriendsScrollPosition(_friendsscrollController.position.pixels);
     });
+
+    _hotscrollController.addListener(() {
+      scrollPosCtrl.saveHotScrollPosition(_hotscrollController.position.pixels);
+    });
   }
 
   @override
   void dispose() {
     _friendsscrollController.dispose();
+    _hotscrollController.dispose();
     super.dispose();
   }
 
@@ -157,7 +167,11 @@ class _Home extends State<Home> {
                     scrollController: _friendsscrollController,
                   ),
                 )
-              : const Expanded(child: HotHome()),
+              : Expanded(
+                  child: HotHome(
+                    scrollController: _hotscrollController,
+                  ),
+                ),
         ],
       ),
     );
