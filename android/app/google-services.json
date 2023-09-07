@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1033827984975:android:24dd47f03d547bec29ec3a",
+        "mobilesdk_app_id": "1:1033827984975:android:cb49de925622fe6829ec3a",
         "android_client_info": {
-          "package_name": "com.example.do_it"
+          "package_name": "com.juntae.doIt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1033827984975-e7coh7e3g6v1hs9ng6s7vls7rvonoo46.apps.googleusercontent.com",
+          "client_id": "1033827984975-1tnch3lu0m79eno6fmaircahhvqp5kul.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.do_it",
+            "package_name": "com.juntae.doIt",
             "certificate_hash": "d52c30c76ea77c5b2350b4e7777af9dfdccac443"
           }
         },
@@ -39,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "1033827984975-ua9j4qd5veumddmfr4i6i5mf69jtkf94.apps.googleusercontent.com",
+              "client_id": "1033827984975-h5nqsmmen6v49sc1215a5tej2hoqrc45.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.doIt"
+                "bundle_id": "com.juntae.doIt"
               }
             }
           ]

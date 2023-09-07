@@ -55,36 +55,43 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: SizedBox(
-          width: 150,
-          child: ElevatedButton(
+        flexibleSpace: FlexibleSpaceBar(
+          centerTitle: true,
+          titlePadding: EdgeInsets.symmetric(horizontal: Get.width / 3),
+          title: ElevatedButton(
             onPressed: () {
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
                 builder: (context) => Container(
-                  height: (MediaQuery.of(context).size.height *
-                      0.75), // 반응형 사이즈(숫자 조절)
+                  height: (Get.height * 0.75),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25.0), // 적절히 조절
-                      topRight: Radius.circular(25.0), // 적절히 조절
+                      topLeft: Radius.circular(25.0),
+                      topRight: Radius.circular(25.0),
                     ),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: Get.width / 4,
-                        height: Get.width / 40,
-                        decoration: const BoxDecoration(color: Colors.grey),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        width: Get.width / 6,
+                        height: Get.width / 80,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
+                      const SizedBox(height: 30),
                       const Text("오늘은 은채의 생일입니다!!!!"),
-                      const Image(image: AssetImage("assets/images/은채.jpeg")),
-                      const Text("은채에게 영상편지를 써주세요.")
+                      const SizedBox(height: 50),
+                      const Image(
+                        image: AssetImage("assets/images/은채.jpeg"),
+                      ),
+                      const SizedBox(height: 100),
+                      const Text("은채에게 영상편지를 써주세요."),
                     ],
                   ),
                 ),
@@ -97,7 +104,7 @@ class _Home extends State<Home> {
             child: const Row(
               children: [
                 Text(
-                  "    오늘의 Do It!",
+                  "오늘의 Do It!",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -119,7 +126,8 @@ class _Home extends State<Home> {
         ),
         leading: IconButton(
           onPressed: () {
-            Get.to(const SearchPage(), transition: Transition.noTransition);
+            Get.to(() => const SearchPage(),
+                transition: Transition.noTransition);
           },
           color: Colors.black,
           icon: const Icon(CustomIcons1.searchline),
@@ -150,13 +158,13 @@ class _Home extends State<Home> {
                   });
                 },
                 icon: Icon(
-                    color: !widget.changepage ? Colors.black : Colors.grey,
+                    color: !widget.changepage ? Colors.red : Colors.grey,
                     CupertinoIcons.flame),
                 label: Text(
                   "Hot",
                   style: TextStyle(
                       fontSize: 15,
-                      color: !widget.changepage ? Colors.black : Colors.grey),
+                      color: !widget.changepage ? Colors.red : Colors.grey),
                 ),
               )
             ],

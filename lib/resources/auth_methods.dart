@@ -41,9 +41,9 @@ class FirebaseAuthMethods {
                 'profilePhoto': googleuser.photoURL,
               },
             );
-            Get.offAll(const MainHome());
+            Get.offAll(() => const MainHome());
           } else {
-            Get.offAll(const MainHome());
+            Get.offAll(() => const MainHome());
           }
         }
         res = true;
@@ -76,9 +76,9 @@ class FirebaseAuthMethods {
                 'profilePhoto': facebookuser.photoURL,
               },
             );
-            Get.offAll(const MainHome());
+            Get.offAll(() => const MainHome());
           } else {
-            Get.offAll(const MainHome());
+            Get.offAll(() => const MainHome());
           }
         }
         res = true;

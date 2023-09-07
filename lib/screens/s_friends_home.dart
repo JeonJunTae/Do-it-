@@ -1,3 +1,4 @@
+import 'package:do_it/widgets/w_postview.dart';
 import 'package:flutter/material.dart';
 
 class FriendsHome extends StatefulWidget {
@@ -20,20 +21,8 @@ class _FriendsHomeState extends State<FriendsHome> {
         child: Column(
           children: [
             Expanded(
-              child: GridView.count(
-                controller: widget.scrollController,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                crossAxisCount: 2,
-                childAspectRatio: 180 / 216,
-                children: List.generate(
-                    11,
-                    (index) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.greenAccent,
-                          ),
-                        )),
+              child: PostsView(
+                scrollController: widget.scrollController,
               ),
             ),
           ],

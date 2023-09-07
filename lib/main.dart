@@ -1,4 +1,4 @@
-import 'package:do_it/screens/s_base.dart';
+import 'package:do_it/screens/s_login.dart';
 import 'package:do_it/utils/colors.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      home: const MainHome(),
+      home: const LoginScreen(),
     );
   }
 }

@@ -65,7 +65,8 @@ class _MainHome extends State<MainHome> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Get.to(const AddPostScreen(), transition: Transition.fade);
+                Get.to(() => const AddPostScreen(),
+                    transition: Transition.fade);
               },
               child: Icon(
                 CustomIcons1.addsquare,
