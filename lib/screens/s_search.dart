@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_it/icons/custom__icons1_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:do_it/screens/s_mission.dart';
@@ -10,28 +11,21 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+Future<List<Map<String, dynamic>>> getUserData() async {
+  final QuerySnapshot querySnapshot =
+      await FirebaseFirestore.instance.collection('users').get();
+  final List<Map<String, dynamic>> userList = querySnapshot.docs
+      .map((doc) => {
+            'username': doc['username'].toString(),
+            'profileImageUrl':
+                doc['profilePhoto'].toString(), // profileImageUrl 필드가 있다고 가정
+          })
+      .toList();
+  return userList;
+}
+
 class _SearchPageState extends State<SearchPage> {
-  List<String> nameList = [
-    '김영희',
-    '이민수',
-    '홍은채',
-    "전재욱",
-    "전준태",
-    '윤여준',
-    '황동기',
-    '천우희',
-    '서새봄',
-    '최설아',
-    '이광수',
-    '박영자',
-    '윤진오',
-    '조준호',
-    '김세희',
-    '정이별',
-    '감스트',
-    '김구라',
-    '김동현'
-  ];
+  Future<List<Map<String, dynamic>>> userList = getUserData();
 
   @override
   Widget build(BuildContext context) {
@@ -86,45 +80,60 @@ class _SearchPageState extends State<SearchPage> {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                height: 100,
-                child: ListView.separated(
-                    itemCount: nameList.length,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (BuildContext context, index) =>
-                        const VerticalDivider(
-                          endIndent: 20,
-                          color: Colors.grey,
-                          thickness: 0.1,
-                        ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                        ),
-                        onPressed: () {},
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.greenAccent),
-                              width: 55,
-                              height: 55,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              nameList[index],
-                              style: const TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black),
-                            )
-                          ],
-                        ),
+              FutureBuilder<List<Map<String, dynamic>>>(
+                  future: userList,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return SizedBox(
+                        height: 100,
+                        child: ListView.separated(
+                            itemCount: snapshot.data!.length,
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (BuildContext context, index) =>
+                                const VerticalDivider(
+                                  endIndent: 20,
+                                  color: Colors.grey,
+                                  thickness: 0.1,
+                                ),
+                            itemBuilder: (BuildContext context, int index) {
+                              return TextButton(
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                ),
+                                onPressed: () {},
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                              snapshot.data![index]
+                                                  ['profileImageUrl'],
+                                            ),
+                                            fit: BoxFit.cover),
+                                      ),
+                                      width: 55,
+                                      height: 55,
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      snapshot.data![index]['username'],
+                                      style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.black),
+                                    )
+                                  ],
+                                ),
+                              );
+                            }),
                       );
-                    }),
-              ),
+                    }
+                  }),
               const SizedBox(height: 5),
               const Text("미션",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),

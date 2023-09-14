@@ -2,7 +2,6 @@ import 'package:do_it/icons/custom__icons1_icons.dart';
 import 'package:do_it/screens/s_addpost.dart';
 import 'package:do_it/utils/colors.dart';
 import 'package:do_it/utils/global_variables.dart';
-//import 'package:do_it/widgets/w_navigatorbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -47,7 +46,7 @@ class _MainHome extends State<MainHome> {
         controller: pageController,
         onPageChanged: onPageChanged,
         physics: const NeverScrollableScrollPhysics(),
-        children: ScreenItems,
+        children: screenItems,
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
@@ -64,8 +63,8 @@ class _MainHome extends State<MainHome> {
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
-              onTap: () {
-                Get.to(() => const AddPostScreen(),
+              onTap: () async {
+                Get.to(() => const AddpostScreen(),
                     transition: Transition.fade);
               },
               child: Icon(

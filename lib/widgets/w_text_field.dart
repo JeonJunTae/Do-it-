@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TextFieldInput extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -20,7 +21,7 @@ class TextFieldInput extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
     );
     return SizedBox(
-      width: (MediaQuery.of(context).size.width / 1.2),
+      width: Get.width,
       child: TextField(
         cursorColor: Colors.grey,
         style: const TextStyle(color: Colors.black, fontSize: 18),

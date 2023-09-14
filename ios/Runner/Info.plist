@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -51,6 +49,14 @@
 				<string>com.googleusercontent.apps.1033827984975-ua9j4qd5veumddmfr4i6i5mf69jtkf94</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1033827984975-h5nqsmmen6v49sc1215a5tej2hoqrc45</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
@@ -66,6 +72,8 @@
 		<string>fb-messenger-share-api</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAllowsArbitraryLoads</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera Usage</string>
@@ -96,7 +104,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-
-
 </dict>
 </plist>

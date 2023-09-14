@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 double iconsize = 25;
 bool page = true;
-
-List<Widget> ScreenItems = [
+List<Widget> screenItems = [
   Home(
     changepage: page,
   ),
-  const AddPostScreen(),
+  const AddpostScreen(),
   const ProfileScreen()
 ];

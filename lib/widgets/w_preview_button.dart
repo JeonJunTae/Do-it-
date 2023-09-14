@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:do_it/src/binding/controller/upload_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +25,16 @@ class PreviewButton extends GetView<UploadController> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: SizedBox(
+                    child: Container(
                       width: Get.width,
                       height: Get.width * 1.3,
-                      child: Image.file(
-                        controller.filteredImage,
-                        fit: BoxFit.cover,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: FileImage(
+                            File(controller.imagePath.value),
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -151,7 +157,7 @@ class PreviewButton extends GetView<UploadController> {
         height: Get.width / 8,
         width: Get.width / 3,
         decoration: BoxDecoration(
-          color: const Color(0xff3B3B3B),
+          color: Colors.redAccent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: const Row(

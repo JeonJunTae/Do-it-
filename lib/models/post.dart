@@ -39,15 +39,16 @@ class Post {
     var snapshot = snap.data() as Map<String, dynamic>;
 
     return Post(
-      username: snapshot['username'],
-      uid: snapshot['uid'],
-      description: snapshot['description'],
-      postId: snapshot['postId'],
-      createdtime: snapshot['createdtime'],
-      likecount: snapshot['likes'],
-      postUrl: snapshot['postUrl'],
-      commentcount: snapshot['comments'],
-      viewcount: snapshot['views'],
+      username: snapshot['username'] ?? " ",
+      uid: snapshot['uid'] ?? " ",
+      description: snapshot['description'] ?? " ",
+      postId: snapshot['postId'] ?? " ",
+      createdtime:
+          (snapshot['createdtime'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      likecount: snapshot['likes'] ?? 0,
+      postUrl: snapshot['postUrl'] ?? " ",
+      commentcount: snapshot['comments'] ?? 0,
+      viewcount: snapshot['views'] ?? 0,
     );
   }
 }

@@ -1,13 +1,15 @@
+import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:do_it/screens/s_addpost.dart';
+import 'package:do_it/screens/s_upload.dart';
 import 'package:do_it/widgets/w_circleiconbutton.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:get/get.dart';
 
-class TakePictureScreen extends StatefulWidget {
-  const TakePictureScreen({
+class CameraScreen extends StatefulWidget {
+  const CameraScreen({
     super.key,
     required this.cameras,
   });
@@ -15,10 +17,10 @@ class TakePictureScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
 
   @override
-  TakePictureScreenState createState() => TakePictureScreenState();
+  State<CameraScreen> createState() => _CameraScreen();
 }
 
-class TakePictureScreenState extends State<TakePictureScreen> {
+class _CameraScreen extends State<CameraScreen> {
   late CameraController _frontcontroller; // 카메라 제어하는데 사용
   late CameraController _rearcontroller;
   bool _isRealCameraSelected = true;
@@ -29,12 +31,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // To display the current output from the Camera,
-    // create a CameraController.
     _rearcontroller = CameraController(
-      // Get a specific camera from the list of available cameras.
       widget.cameras[0],
-      // Define the resolution to use.
       ResolutionPreset.ultraHigh,
     );
 
@@ -43,7 +41,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       ResolutionPreset.ultraHigh,
     );
 
-    // Next, initialize the controller. This returns a Future.
     Future.wait([
       _frontcontroller.initialize(),
       _rearcontroller.initialize(),
@@ -65,17 +62,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 
   Future<void> _takePhotosSimultaneously() async {
     try {
-      // Ensure that the camera is initialized.
-      // Attempt to take a picture and get the file `image`
-      // where it was saved.
-      final rearimage = await _rearcontroller.takePicture();
+      final image = await _rearcontroller.takePicture();
 
       if (!mounted) return;
 
-      // If the picture was taken, display it on a new screen.
-      Get.to(() => const AddPostScreen());
+      await Get.to(() => UploadScreen(imagePath: image.path));
     } catch (e) {
-      // If an error occurs, log the error to the console.
       return;
     }
   }
@@ -124,18 +116,14 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // You must wait until the controller is initialized before displaying the
-      // camera preview. Use a FutureBuilder to display a loading spinner until the
-      // controller has finished initializing.
       body: _frontcontroller.value.isInitialized &&
               _rearcontroller.value.isInitialized
-          // If the Future is complete, display the preview.
           ? Stack(
               children: [
                 SizedBox(
                   // 후면 카메라 프리뷰 크기 설정
-                  width: Get.width,
-                  height: Get.height,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
                   child: GestureDetector(
                     onScaleStart: (details) {
                       _baseScale = _currentScale;
@@ -168,11 +156,12 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                   top: 60,
                   child: IconButton(
                     onPressed: () {
-                      Get.back();
+                      Get.to(() => const AddpostScreen(),
+                          transition: Transition.fade);
                     },
                     icon: const Icon(
                       Icons.arrow_back_ios,
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -187,7 +176,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                       children: [
                         const SizedBox(width: 10),
                         CircleIconButton(
-                          backgroundcolor: const Color(0xff3B3B3B),
+                          backgroundcolor: Colors.grey,
                           size: 30,
                           icon: _isFlashed ? Icons.flash_on : Icons.flash_off,
                           onPressed: () {
@@ -205,16 +194,18 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                           },
                         ),
                         CircleIconButton(
-                            backgroundcolor: const Color(0xff3B3B3B),
-                            size: 60,
-                            icon: Icons.camera,
-                            onPressed: _takePhotosSimultaneously),
+                          backgroundcolor: Colors.grey,
+                          size: 60,
+                          icon: Icons.camera,
+                          onPressed: _takePhotosSimultaneously,
+                        ),
                         CircleIconButton(
-                            backgroundcolor: const Color(0xff3B3B3B),
-                            size: 30,
-                            icon: Icons.refresh_rounded,
-                            onPressed: _switchCamera),
-                        const SizedBox(width: 10)
+                          backgroundcolor: Colors.grey,
+                          size: 30,
+                          icon: Icons.refresh_rounded,
+                          onPressed: _switchCamera,
+                        ),
+                        const SizedBox(width: 10),
                       ],
                     ),
                   ),

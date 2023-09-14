@@ -2,6 +2,7 @@ import 'package:do_it/icons/custom__icons1_icons.dart';
 import 'package:do_it/screens/s_friends_home.dart';
 import 'package:do_it/screens/s_hot_home.dart';
 import 'package:do_it/screens/s_search.dart';
+import 'package:do_it/src/binding/controller/post_controller.dart';
 import 'package:do_it/src/binding/controller/scrollposition_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -140,31 +141,38 @@ class _Home extends State<Home> {
             children: [
               TextButton(
                 onPressed: () {
-                  setState(() {
-                    widget.changepage = true;
-                  });
+                  setState(
+                    () {
+                      widget.changepage = true;
+                    },
+                  );
                 },
                 child: Text(
                   "Friends",
                   style: TextStyle(
-                      fontSize: 15,
-                      color: widget.changepage ? Colors.black : Colors.grey),
+                    fontSize: 15,
+                    color: widget.changepage ? Colors.black : Colors.grey,
+                  ),
                 ),
               ),
               TextButton.icon(
                 onPressed: () {
-                  setState(() {
-                    widget.changepage = false;
-                  });
+                  setState(
+                    () {
+                      widget.changepage = false;
+                    },
+                  );
                 },
                 icon: Icon(
-                    color: !widget.changepage ? Colors.red : Colors.grey,
-                    CupertinoIcons.flame),
+                  color: !widget.changepage ? Colors.red : Colors.grey,
+                  CupertinoIcons.flame,
+                ),
                 label: Text(
                   "Hot",
                   style: TextStyle(
-                      fontSize: 15,
-                      color: !widget.changepage ? Colors.red : Colors.grey),
+                    fontSize: 15,
+                    color: !widget.changepage ? Colors.red : Colors.grey,
+                  ),
                 ),
               )
             ],

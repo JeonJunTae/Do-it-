@@ -1,4 +1,6 @@
 import 'package:do_it/icons/custom__icons2_icons.dart';
+import 'package:do_it/screens/s_edit.dart';
+import 'package:do_it/screens/s_follow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
@@ -133,7 +135,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                   ),
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => const EditScreen());
+                    },
                     icon: const Icon(
                       size: 15,
                       Custom_Icons2.icon__2_,
@@ -162,48 +166,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "1500",
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            "팔로잉",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                          )
-                        ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const FollowPage(initialTabIndex: 0));
+                        },
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "1500",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              "팔로잉",
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey),
+                            )
+                          ],
+                        ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "220k",
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            '팔로워',
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                          )
-                        ],
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const FollowPage(initialTabIndex: 1));
+                        },
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "220k",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              '팔로워',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey),
+                            )
+                          ],
+                        ),
                       ),
-                      Column(
+                      const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(

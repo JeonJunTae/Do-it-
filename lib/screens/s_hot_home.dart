@@ -27,13 +27,14 @@ class _HotHomeState extends State<HotHome> {
                 crossAxisCount: 2,
                 childAspectRatio: 180 / 216,
                 children: List.generate(
-                    11,
-                    (index) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.blueAccent,
-                          ),
-                        )),
+                  11,
+                  (index) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
